@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { AuthLogin } from './authLogin';
+
+import FormularioLogin from './FormularioLogin';
+import './Login.css';
+
+import PhotoMobal from '../../assets/game/PhotoLoginPage.jpg'
+
 import { useNavigate } from 'react-router';
-import './style.css';
 import { Button, Modal } from 'react-bootstrap';
 
+// import { AuthLogin } from './authLogin';
+
 export function Login() {
-	const navigate = useNavigate();
 	const [showModal, setShowModal] = useState<boolean>(false);
 
-	//ACCESS BACKEND AFTER GET THE CODE AT
 	function axios_connect() {
 		let paramters = new URLSearchParams(window.location.search);
 		let code = paramters.get('code');
@@ -25,12 +29,14 @@ export function Login() {
 				Cookies.set('email', response.data._email);
 				return response.data
 			})
-			.then(() => {verifyEnabled()})
-			.catch(() => {})
+				.then(() => { verifyEnabled() })
+				.catch(() => { })
 		}
 		return undefined;
 	}
 
+
+	const navigate = useNavigate();
 	const verifyTwoFA = () => {
 		let token = document.getElementById('input-token') as HTMLInputElement;
 		if (token.value === '') return;
@@ -46,7 +52,7 @@ export function Login() {
 		}).then((res) => {
 			if (res.data === true)
 				navigate('/game')
-		}).catch(() => {});
+		}).catch(() => { });
 	}
 
 	const verifyEnabled = () => {
@@ -61,7 +67,7 @@ export function Login() {
 			} else {
 				navigate('/game')
 			}
-		}).catch(() => {})
+		}).catch(() => { })
 	}
 
 
@@ -70,15 +76,23 @@ export function Login() {
 	}, []);
 
 	return (
-		<div className="login  ">
-			<div className="form_container">
-				<form>
-					<h3 className="text-center">Sign in</h3>
-					<div className="d-grid">
-						<button onClick={AuthLogin}>Sign in</button>
+		<div className='loginPage'>
+			<div className='photoLoginBackground'></div>
+			<div className='loginScreen'>
+				<div className='formulario'>
+					<div className='welcome mb-5'>
+						<h1 className='text-center'>WELCOME TO &nbsp;</h1>
+						<h1 className='text-center'>SPACE PONG</h1>
 					</div>
-				</form>
+					<div className='photoLoginInFormToMobile'>
+						<img className='img-thumbnail' src={PhotoMobal} alt="image in pixel art style for a game titled 'SPACE PONG'. The layout features a space theme with a dark, starry background and colorful nebulae. In the background, on the left side, a small astronaut passing deep in red spacesuit with reflective helmet visor is floating in space. Below the astronaut, a small spaceship is represented. The right side prominently displays the game title 'SPACE PONG 42SP' in bold, 3D pixelated letters with an orange to red gradient, outlined in yellow. Above the title are the '42 São Paulo' and 'WW' logos in small, pixelated text. The overall design is vibrant and engaging, with a retro gaming aesthetic." />
+					</div>
+					<h1 className='singIn'>SING IN</h1>
+					<FormularioLogin />
+				</div>
+				<div className='text-center photoLoginInLoginScreen'></div>
 			</div>
+
 			<Modal show={showModal} onHide={() => setShowModal(false)}>
 				<Modal.Header closeButton>
 					<Modal.Title>Habilitar Two Factor Authenticator</Modal.Title>
