@@ -38,7 +38,7 @@ export default function FormularioLogin(props: propsFormulario) {
 			<div className='buttonsForm d-flex flex-column align-items-center'>
 				<button type="submit" className="btn btn-primary w-75 d-block mb-2">Login</button>
 				<span>Need an account?
-					<span className='singUp' onClick={() => props.handleForm('Register')}> Sign in </span>
+					<span className='singUp' onClick={() => props.handleForm('Register')}> Sign up </span>
 				</span>
 			</div>
 		)

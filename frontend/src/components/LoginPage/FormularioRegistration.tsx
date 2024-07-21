@@ -1,7 +1,12 @@
 import './Login.css';
 import React, { useRef } from 'react';
 
-export default function Formulario() {
+
+type propsFormulario = {
+	handleForm: React.Dispatch<React.SetStateAction<string>>
+}
+
+export default function Formulario(props: propsFormulario) {
 	// Component that renders the register form
 	// The HTML blocks are created in functions to facilitate code readability and are called within the form in the function's return
 
@@ -61,7 +66,9 @@ export default function Formulario() {
 		return (
 			<div className='buttonsForm d-flex flex-column align-items-center'>
 				<button type="submit" className="btn btn-primary w-75 d-block mb-2">Register</button>
-				<p>Have an account? <a href="dsada"> Sign up</a></p>
+				<span>Have an account?
+					<span className='singUp' onClick={() => props.handleForm('Login')}> Sign in </span>
+				</span>
 			</div>
 		)
 	}
