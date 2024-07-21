@@ -60,6 +60,9 @@
   background-position: center;
   background-size: 100% 100%;
   width: 100%;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 
@@ -70,9 +73,9 @@
 }
 
 
-.photoLoginInFormToMobile > img {
+.photoLoginInFormToMobile>img {
   height: 100%;
-  border-radius: 50% 50% ;
+  border-radius: 50% 50%;
 }
 
 
@@ -92,6 +95,13 @@ h1,
 .singIn {
   display: none;
 }
+
+
+.singUp {
+  text-decoration: dashed;
+  color: #ec2c63;
+}
+
 @media screen and (max-width: 768px) {
   .photoLoginInLoginScreen {
     display: none;
@@ -104,6 +114,7 @@ h1,
   .welcome {
     display: none;
   }
+
   .photoLoginInFormToMobile {
     display: block;
   }
@@ -112,5 +123,9 @@ h1,
   .formulario {
     width: 100%;
     border-radius: 10px;
+  }
+
+  .loginScreen {
+    padding: 1rem;
   }
 }

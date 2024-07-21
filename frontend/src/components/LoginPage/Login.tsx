@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import FormularioLogin from './FormularioLogin';
+import FormularioRegistration from './FormularioRegistration';
 import './Login.css';
 
 import PhotoMobal from '../../assets/game/PhotoLoginPage.jpg'
@@ -14,6 +15,7 @@ import { Button, Modal } from 'react-bootstrap';
 
 export function Login() {
 	const [showModal, setShowModal] = useState<boolean>(false);
+	const [handleForm, setHandleForm] = useState<string>('Login');
 
 	function axios_connect() {
 		let paramters = new URLSearchParams(window.location.search);
@@ -88,7 +90,7 @@ export function Login() {
 						<img className='img-thumbnail' src={PhotoMobal} alt="image in pixel art style for a game titled 'SPACE PONG'. The layout features a space theme with a dark, starry background and colorful nebulae. In the background, on the left side, a small astronaut passing deep in red spacesuit with reflective helmet visor is floating in space. Below the astronaut, a small spaceship is represented. The right side prominently displays the game title 'SPACE PONG 42SP' in bold, 3D pixelated letters with an orange to red gradient, outlined in yellow. Above the title are the '42 São Paulo' and 'WW' logos in small, pixelated text. The overall design is vibrant and engaging, with a retro gaming aesthetic." />
 					</div>
 					<h1 className='singIn'>SING IN</h1>
-					<FormularioLogin />
+					{handleForm === 'Login' ? <FormularioLogin handleForm={setHandleForm} /> : <FormularioRegistration />}
 				</div>
 				<div className='text-center photoLoginInLoginScreen'></div>
 			</div>
